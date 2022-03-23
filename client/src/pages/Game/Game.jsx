@@ -15,9 +15,6 @@ export default class Game extends Component {
             })
         }, 1000)
 
-        // if(this.state.count === 0){
-        //     alert('Time has ran out!');
-        // }
     }
 
     componentDidUpdate(){
