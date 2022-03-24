@@ -36,7 +36,7 @@ export default function Timer({ hoursMinsSecs }) {
   return (
     <>
       <section className="timer">
-        <h1 className="timer__title">Timer</h1>
+        <h1 className="timer__title">Think Fast!</h1>
         <p>{`${hrs.toString().padStart(2, '0')}:${mins
             .toString()
             .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`}</p>
