@@ -1,3 +1,4 @@
+import './Timer.scss';
 import React, { useState, useEffect } from 'react';
 
 export default function Timer({ hoursMinsSecs }) {
@@ -37,7 +38,7 @@ export default function Timer({ hoursMinsSecs }) {
     <>
       <section className="timer">
         <h1 className="timer__title">Think Fast!</h1>
-        <p>{`${hrs.toString().padStart(2, '0')}:${mins
+        <p className="timer__clock">{`${hrs.toString().padStart(2, '0')}:${mins
             .toString()
             .padStart(2, '0')}:${secs.toString().padStart(2, '0')}`}</p>
       </section>
