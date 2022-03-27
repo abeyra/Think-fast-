@@ -3,6 +3,13 @@ import { Component } from 'react';
 
 export default class Keyboard extends Component {
 
+
+    componentDidUpdate() {
+        document.addEventListener("keyup", (event) => {
+            
+        })
+    }
+
     render() {
         return (
             <>
