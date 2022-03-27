@@ -47,6 +47,16 @@ export default class Game extends Component {
         })
     }
 
+    insertLetter = () => {
+        if (nextLetter === 5) {
+            return
+        }
+        pressedKey = pressedKey.toLowerCase();
+
+        let row = document.querySelector(".game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
+        let box = row.children[nextLetter];        
+    }
+
     createGameBoard = () => {
 
         let board = document.querySelector(".game__board");
