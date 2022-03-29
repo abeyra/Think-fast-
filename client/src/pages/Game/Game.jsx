@@ -15,8 +15,6 @@ export default class Game extends Component {
     }
 
     componentDidMount() {
-
-        let guessesRemaining = this.state.NUMBER_OF_GUESSES;
         
         document.addEventListener("keyup", (event) => {
             if (this.state.NUMBER_OF_GUESSES === 0) {
@@ -47,7 +45,7 @@ export default class Game extends Component {
         })
 
         this.createGameBoard();
-        // this.keyboardFunctions();
+        this.keyboardFunctions();
     }
 
     componentDidUpdate(){
@@ -118,7 +116,7 @@ export default class Game extends Component {
         box.classList.remove("game__board-box--filled");
         
         this.setState({
-            userGuess: [...this.state.userGuess, this.state.userGuess.slice(-1)],
+            userGuess: this.state.userGuess.slice(0, -1),
             nextLetter: this.state.nextLetter - 1
         })
         // this.state.nextLetter -= 1;
@@ -197,9 +195,11 @@ export default class Game extends Component {
     }
 
     shadeKeyboard = (letter, color) => {
-        for (const element of document.querySelector(".keyboard__button")) {
-            if(element.textContent === letter) {
-                let oldColor = element.style.backgroundColor;
+        let btn = document.getElementsByClassName("keyboard__button");
+
+        for (let i = 0; i < btn.length; i++) {
+            if(btn[i].textContent === letter) {
+                let oldColor = btn[i].style.backgroundColor;
                 if (oldColor === "green") {
                     return;
                 }
@@ -208,33 +208,33 @@ export default class Game extends Component {
                     return;
                 }
 
-                element.style.backgroundColor = color; 
+                btn[i].style.backgroundColor = color; 
                 break;
             }
         }
     }
 
-    // keyboardFunctions = () => {
-    //     document.querySelector(".keyboard__content").addEventListener("click", (event) => {
-    //         const target = event.target;
-    //         console.log(target.textContent);
+    keyboardFunctions = () => {
+        document.querySelector(".keyboard__content").addEventListener("click", (event) => {
+            const target = event.target;
+            console.log(target.textContent);
 
-    //         if (!target.classList.contains("keyboard__button")) {
-    //             return;
-    //         }
-    //         let key = target.textContent;
-    //         // this.setState({
-    //         //     currentLetter: key
-    //         // })
+            if (!target.classList.contains("keyboard__button")) {
+                return;
+            }
+            let key = target.textContent;
+            // this.setState({
+            //     currentLetter: key
+            // })
 
-    //         if (key === "Del") {
-    //             console.log('working');
-    //             key = "Backspace";
-    //         }
+            if (key === "Del") {
+                console.log('working');
+                key = "Backspace";
+            }
 
-    //         // document.dispatchEvent(new KeyboardEvent("keyup", {"key": key}));
-    //     })
-    // }
+            document.dispatchEvent(new KeyboardEvent("keyup", {"key": key}));
+        })
+    }
 
     createGameBoard = () => {
 
@@ -256,7 +256,11 @@ export default class Game extends Component {
 
     render() {
 
-        const hoursMinsSecs = {hours:0, minutes: 10, seconds: 0} 
+        let hoursMinsSecs = {hours:0, minutes: 10, seconds: 0} 
+
+        if (this.state.NUMBER_OF_GUESSES === 0) {
+            hoursMinsSecs = {hours:0, minutes: 0, seconds: 0};
+        }
 
         return (
             <>

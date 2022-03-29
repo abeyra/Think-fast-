@@ -5,23 +5,23 @@ export default class Keyboard extends Component {
 
 
     componentDidUpdate() {
-        function keyboardFunctions() {
-            document.querySelector(".keyboard__content").addEventListener("click", (event) => {
-                const target = event.target;
+        // function keyboardFunctions() {
+        //     document.querySelector(".keyboard__content").addEventListener("click", (event) => {
+        //         const target = event.target;
 
-                if (!target.classList.contains("keyboard__button")) {
-                    return
-                }
-                let key = target.textContent;
+        //         if (!target.classList.contains("keyboard__button")) {
+        //             return
+        //         }
+        //         let key = target.textContent;
 
-                if (key === "Del") {
-                    key = "Backspace"
-                }
+        //         if (key === "Del") {
+        //             key = "Backspace"
+        //         }
 
-                document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}));
-            })
-        }
-        keyboardFunctions();
+        //         document.dispatchEvent(new KeyboardEvent("keyup", {'key': key}));
+        //     })
+        // }
+        // keyboardFunctions();
     }
 
     render() {
