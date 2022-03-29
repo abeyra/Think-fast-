@@ -9,27 +9,22 @@ export default class Game extends Component {
         NUMBER_OF_GUESSES: 6,
         userGuess: [],
         nextLetter: 0, 
-        correctGuess: WORDS[Math.floor(Math.random() * WORDS.length)]
+        correctGuess: WORDS[Math.floor(Math.random() * WORDS.length)],
+        currentLetter: null,
+        array: []
     }
 
     componentDidMount() {
 
-        // let guessesRemaining = this.state.NUMBER_OF_GUESSES;
+        let guessesRemaining = this.state.NUMBER_OF_GUESSES;
         
-            
-
-        this.createGameBoard();
-        this.keyboardFunctions();
-    }
-
-    componentDidUpdate(){
-        
-         document.addEventListener("keyup", (event) => {
+        document.addEventListener("keyup", (event) => {
             if (this.state.NUMBER_OF_GUESSES === 0) {
                 return;
             }
 
             let pressedKey = String(event.key);
+            console.log("pressedKey", pressedKey);
 
             if(pressedKey === "Backspace" && this.state.nextLetter !== 0){
                 this.deleteLetter();
@@ -47,52 +42,93 @@ export default class Game extends Component {
                 return;
             } else {
                 this.insertLetter(pressedKey);
+                // return;
             }
         })
 
-        this.insertLetter();
-        this.deleteLetter();
-        this.checkGuess();
-        this.shadeKeyboard();
+        this.createGameBoard();
+        // this.keyboardFunctions();
+    }
+
+    componentDidUpdate(){
+        
+        
+        //  document.addEventListener("keyup", (event) => {
+        //     if (this.state.NUMBER_OF_GUESSES === 0) {
+        //         return;
+        //     }
+
+        //     let pressedKey = String(event.key);
+        //     console.log("pressedKey", pressedKey);
+
+        //     if(pressedKey === "Backspace" && this.state.nextLetter !== 0){
+        //         this.deleteLetter();
+        //         return;
+        //     }
+
+        //     if(pressedKey === "Enter") {
+        //         this.checkGuess();
+        //         return;
+        //     }
+
+        //     let found = pressedKey.match(/[a-z]/gi);
+
+        //     if (!found || found.length > 1) {
+        //         return;
+        //     } else {
+        //         this.insertLetter(pressedKey);
+        //         return;
+        //     }
+        // })
+
+        // this.insertLetter();
+        // this.deleteLetter();
+        // this.checkGuess();
+        // this.shadeKeyboard();
     }
 
     insertLetter = (pressedKey) => {
-        if (this.state.nextLetter === 5) {
-            return;
-        }
-        let playerInput = [];
-        pressedKey = pressedKey.toLowerCase();
+        if (pressedKey) {
+            if (this.state.nextLetter === 5) {
+                return;
+            }
+            // let playerInput = [];
+            pressedKey = pressedKey.toLowerCase();
 
-        let row = document.querySelector(".game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
-        let box = row.children[this.state.nextLetter]; 
-        box.textContent = pressedKey;
-        box.classList.add("game__board-box--filled");
-        playerInput.push(pressedKey);
-        this.setState({
-            userGuess: playerInput,
-            nextLetter: this.state.nextLetter + 1
-        })
+            let row = document.getElementsByClassName("game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
+            let box = row.children[this.state.nextLetter]; 
+            box.textContent = pressedKey;
+            box.classList.add("game__board-box--filled");
+            // let playerInput = this.state.userGuess.push(pressedKey);
+            // console.log(playerInput);
+            this.setState({
+                userGuess: [...this.state.userGuess, pressedKey],
+                nextLetter: this.state.nextLetter + 1
+            })
+        }
     }
 
     deleteLetter = () => {
-        let playerInput = [];
+        // let playerInput = this.state.userGuess.pop();
 
-        let row = document.querySelector(".game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
+        let row = document.getElementsByClassName("game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
         let box = row.children[this.state.nextLetter - 1];
+        console.log(box);
         box.textContent = "";
         box.classList.remove("game__board-box--filled");
-        this.state.playerInput.pop();
+        
         this.setState({
-            userGuess: playerInput,
+            userGuess: [...this.state.userGuess, this.state.userGuess.slice(-1)],
             nextLetter: this.state.nextLetter - 1
         })
         // this.state.nextLetter -= 1;
     }
 
     checkGuess = () => {
-        let row = document.querySelector(".game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
+        let row = document.getElementsByClassName("game__board-row")[6 - this.state.NUMBER_OF_GUESSES];
         let guessString = "";
         let rightGuess = Array.from(this.state.correctGuess);
+        console.log('check guess working');
 
         for (const val of this.state.userGuess) {
             guessString += val;
@@ -178,23 +214,27 @@ export default class Game extends Component {
         }
     }
 
-    keyboardFunctions = () => {
-        document.querySelector(".keyboard__content").addEventListener("click", (event) => {
-            const target = event.target;
-            console.log(target.textContent);
+    // keyboardFunctions = () => {
+    //     document.querySelector(".keyboard__content").addEventListener("click", (event) => {
+    //         const target = event.target;
+    //         console.log(target.textContent);
 
-            if (!target.classList.contains("keyboard__button")) {
-                return;
-            }
-            let key = target.textContent;
+    //         if (!target.classList.contains("keyboard__button")) {
+    //             return;
+    //         }
+    //         let key = target.textContent;
+    //         // this.setState({
+    //         //     currentLetter: key
+    //         // })
 
-            if (key === "Del") {
-                key = "Backspace";
-            }
+    //         if (key === "Del") {
+    //             console.log('working');
+    //             key = "Backspace";
+    //         }
 
-            document.dispatchEvent(new KeyboardEvent("keyup", {"key": key}));
-        })
-    }
+    //         // document.dispatchEvent(new KeyboardEvent("keyup", {"key": key}));
+    //     })
+    // }
 
     createGameBoard = () => {
 
