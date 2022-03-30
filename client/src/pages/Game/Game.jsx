@@ -3,6 +3,7 @@ import { Component } from 'react';
 import Timer from '../../components/Timer/Timer';
 import Keyboard from '../../components/Keyboard/Keyboard';
 import { WORDS } from '../../Words/words';
+import axios from 'axios';
 
 export default class Game extends Component {
     state = {
@@ -11,7 +12,8 @@ export default class Game extends Component {
         nextLetter: 0, 
         correctGuess: WORDS[Math.floor(Math.random() * WORDS.length)],
         currentLetter: null,
-        array: []
+        array: [],
+        timeLeft: null
     }
 
     componentDidMount() {
@@ -174,8 +176,15 @@ export default class Game extends Component {
             }, delay)
         }
 
+        let userName = sessionStorage.getItem("username");
+
         if (guessString === this.state.correctGuess) {
-            alert("You guessed right! You win!");
+            alert(`You guessed right ${userName}! You win! You had ${this.state.NUMBER_OF_GUESSES} guesses left!`);
+
+            axios.post("http://localhost:9001/endgame", {
+                userName: userName,
+                triesLeft: this.state.NUMBER_OF_GUESSES
+            })
             this.setState({
                 NUMBER_OF_GUESSES: 0
             })

@@ -1,0 +1,22 @@
+.login {
+    margin-top: 30%;
+    &__title {
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto; 
+        width: 20%;
+
+        // &-username {
+        //     width: 20%;
+        // }
+
+        // &-button {
+        //     width: 20%;
+        // }
+    }
+}
