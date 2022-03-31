@@ -19,14 +19,18 @@ app.post("/signup", (req, res) => {
     .then((result) => {
       if (!result.length) {
          knex("users")
-          .insert([
+          .insert(
             {
               username: userName,
-            },
-          ])
+            }
+          )
           .then((response) => {
+            console.log(response);
             console.log(userName);
-            res.status(201).send(userName);
+            res.status(201).send({
+              userName: userName,
+              id: response[0]
+            });
           })
           .catch((error) => {
             console.log(error);
@@ -43,31 +47,25 @@ app.post("/signup", (req, res) => {
 app.post("/endgame", (req, res) => {
   let attemptsLeft = req.body.attemptsLeft;
   let word = req.body.word;
-  console.log(attemptsLeft, word);
+  let id = req.body.id;
+  console.log(attemptsLeft, word, id);
 
   knex
-    .select("attemptsLeft", "correctWord")
-    .from("scores")
-    // .where("attemptsLeft", attemptsLeft && "correctWord", word)
-    .then((result) => {
       knex("scores")
-        .insert([
+        .insert(
           {
+            userId: id,
             attemptsLeft: attemptsLeft,
             correctWord: word
           }
-        ])
+        )
         .then((response) => {
-          console.log(attemptsLeft, word);
+          console.log(attemptsLeft, word, id);
           res.status(201).send(req.body);
         })
         .catch((error) => {
           console.log(error);
         });
-    })
-    .catch((error) => {
-      console.log(error);
-    })
 });
 
 // Start up the app

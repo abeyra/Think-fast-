@@ -12,7 +12,6 @@ export default class Game extends Component {
         nextLetter: 0, 
         correctGuess: WORDS[Math.floor(Math.random() * WORDS.length)],
         currentLetter: null,
-        array: [],
         timeLeft: null
     }
 
@@ -176,14 +175,16 @@ export default class Game extends Component {
             }, delay)
         }
 
-        let userName = sessionStorage.getItem("username");
+        let user = JSON.parse(sessionStorage.getItem("user"));
 
         if (guessString === this.state.correctGuess) {
-            alert(`You guessed right ${userName}! You win! You had ${this.state.NUMBER_OF_GUESSES -1} guesses left!`);
+            alert(`You guessed right ${user.userName}! You win! You had ${this.state.NUMBER_OF_GUESSES -1} guesses left!`);
 
+            console.log(user.id);
             axios.post("http://localhost:9001/endgame", {
                 attemptsLeft: this.state.NUMBER_OF_GUESSES -1,
-                word: this.state.correctGuess
+                word: this.state.correctGuess,
+                id: user.id
             })
             this.setState({
                 NUMBER_OF_GUESSES: 0

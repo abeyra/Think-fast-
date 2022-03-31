@@ -17,7 +17,8 @@ export default class Login extends Component {
       })
       .then((response) => {
         console.log(response);
-        sessionStorage.setItem("username", response.data);
+
+        sessionStorage.setItem("user", JSON.stringify(response.data));
 
         this.setState({
           userName: response.data,
