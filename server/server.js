@@ -41,12 +41,33 @@ app.post("/signup", (req, res) => {
 });
 
 app.post("/endgame", (req, res) => {
-  let userName = req.body.userName;
-  let triesLeft = req.body.triesLeft;
-  console.log(userName, triesLeft);
+  let attemptsLeft = req.body.attemptsLeft;
+  let word = req.body.word;
+  console.log(attemptsLeft, word);
 
   knex
-    .select()
+    .select("attemptsLeft", "correctWord")
+    .from("scores")
+    // .where("attemptsLeft", attemptsLeft && "correctWord", word)
+    .then((result) => {
+      knex("scores")
+        .insert([
+          {
+            attemptsLeft: attemptsLeft,
+            correctWord: word
+          }
+        ])
+        .then((response) => {
+          console.log(attemptsLeft, word);
+          res.status(201).send(req.body);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 });
 
 // Start up the app
