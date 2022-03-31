@@ -2,6 +2,7 @@ import './Login.scss';
 import { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+// import Cube from "../../images/cube.gif";
 
 export default class Login extends Component {
 
@@ -37,12 +38,13 @@ export default class Login extends Component {
 
         return (
             <>
-                <section className="login">               
+                <section className="login">  
+
                     <h1 className="login__title">Welcome to Think Fast!</h1>
 
                     <form className="login__form" action="/signup" method="post" onSubmit={this.onSubmit}>
                         <label className="login__form-label" htmlFor="username">Enter Username</label>
-                        <input className="login__form-username" type="text" name="username"/>
+                        <input className="login__form-input" type="text" name="username"/>
                         <button className="login__form-button" type="submit" >Play!</button>
                     </form>
                 </section>
