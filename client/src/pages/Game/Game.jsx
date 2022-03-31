@@ -179,11 +179,11 @@ export default class Game extends Component {
         let userName = sessionStorage.getItem("username");
 
         if (guessString === this.state.correctGuess) {
-            alert(`You guessed right ${userName}! You win! You had ${this.state.NUMBER_OF_GUESSES} guesses left!`);
+            alert(`You guessed right ${userName}! You win! You had ${this.state.NUMBER_OF_GUESSES -1} guesses left!`);
 
             axios.post("http://localhost:9001/endgame", {
-                userName: userName,
-                triesLeft: this.state.NUMBER_OF_GUESSES
+                attemptsLeft: this.state.NUMBER_OF_GUESSES -1,
+                word: this.state.correctGuess
             })
             this.setState({
                 NUMBER_OF_GUESSES: 0
