@@ -68,6 +68,18 @@ app.post("/endgame", (req, res) => {
         });
 });
 
+app.get("/leaderboard", (req, res) => {
+  knex("users")
+    .join("scores", "users.id", "=", "scores.userId")
+    .select("users.username", "scores.attemptsLeft", "scores.correctWord")
+    .then(data => {
+      res.send(data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+});
+
 // Start up the app
 app.listen(SERVER_PORT, () => {
   console.log(`Server is listening on port ${SERVER_PORT}`);
