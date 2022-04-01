@@ -1,5 +1,6 @@
 import './Game.scss';
 import { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import Timer from '../../components/Timer/Timer';
 import Keyboard from '../../components/Keyboard/Keyboard';
 import { WORDS } from '../../Words/words';
@@ -189,7 +190,7 @@ export default class Game extends Component {
             this.setState({
                 NUMBER_OF_GUESSES: 0
             })
-            return
+            return 
         } else {
             this.setState({
                 NUMBER_OF_GUESSES: this.state.NUMBER_OF_GUESSES -1,
@@ -269,7 +270,7 @@ export default class Game extends Component {
         let hoursMinsSecs = {hours:0, minutes: 10, seconds: 0} 
 
         if (this.state.NUMBER_OF_GUESSES === 0) {
-            hoursMinsSecs = {hours:0, minutes: 0, seconds: 0};
+            return <Redirect to="/leaderboard" />
         }
 
         return (

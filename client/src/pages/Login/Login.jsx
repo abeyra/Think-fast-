@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default class Login extends Component {
   state = {
-    userName: sessionStorage.getItem("username"),
+    userName: sessionStorage.getItem("user")
   };
 
   onSubmit = (event) => {
