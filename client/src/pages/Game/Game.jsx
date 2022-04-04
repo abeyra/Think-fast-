@@ -1,9 +1,9 @@
 import './Game.scss';
 import { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Timer from '../../components/timer/timer';
+import Timer from '../../components/Timer/Timer';
 import Keyboard from '../../components/Keyboard/Keyboard';
-import { WORDS } from "../../words/words";
+import { WORDS } from "../../Words/Words";
 import axios from 'axios';
 
 export default class Game extends Component {
