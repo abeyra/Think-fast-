@@ -26,8 +26,6 @@ export default class Leaderboard extends Component {
       <>
         <section className="leaderboard">
           <h1 className="leaderboard__title">Leaderboard</h1>
-
-
           <div className="leaderboard__table">
 
             <div className="leaderboard__table-username">
@@ -77,20 +75,6 @@ export default class Leaderboard extends Component {
                 </ul>
 
             </div>
-
-              {/* <ul className="leaderboard__scores">
-                {this.state.leaderboard.map((score) => {
-                  return (
-                    <>
-                      <li key={score.id} className="leaderboard__scores-item">
-                        <p>{score.username}</p>
-                        <p>{score.attemptsLeft}</p>
-                        <p>{score.correctWord}</p>
-                      </li>
-                    </>
-                  );
-                })}
-              </ul> */}
             
           </div>
         </section>

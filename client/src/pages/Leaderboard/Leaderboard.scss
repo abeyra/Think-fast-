@@ -1,12 +1,16 @@
 @use '../../styles/partials/fonts';
 
 .leaderboard {
-
+    background-image: url('../../assets/images/Spotlight_black_background.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 100vw;
     font-family: 'OpenSans';
+    color: white;
 
     &__title {
         font-size: 24px;
-        margin: 12px 0;
+        padding: 12px 0;
     }
 
     &__table {

@@ -187,9 +187,12 @@ export default class Game extends Component {
                 word: this.state.correctGuess,
                 id: user.id
             })
-            this.setState({
-                NUMBER_OF_GUESSES: 0
-            })
+            setTimeout( () => {
+                    this.setState({
+                    NUMBER_OF_GUESSES: 0
+                })
+            }, 3000)
+            
             return 
         } else {
             this.setState({
@@ -270,7 +273,7 @@ export default class Game extends Component {
         let hoursMinsSecs = {hours:0, minutes: 10, seconds: 0} 
 
         if (this.state.NUMBER_OF_GUESSES === 0) {
-            return <Redirect to="/leaderboard" />
+            return <Redirect to="/leaderboard" />;
         }
 
         return (
