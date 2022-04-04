@@ -1,0 +1,30 @@
+{
+  "name": "andres-beyra-capstone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "npm start --prefix server",
+    "setup:dev": "cd client && npm i && cd ../server && npm i",
+    "server": "cd server && npm run server",
+    "server:dev": "cd server && nodemon server.js",
+    "client": "cd client && npm run start",
+    "dev": "concurrently --kill-others \"npm run server:dev\" \"npm run client\"",
+    "heroku-postbuild": "npm install --prefix client && npm install --prefix server && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abeyra/Think-fast-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abeyra/Think-fast-/issues"
+  },
+  "homepage": "https://github.com/abeyra/Think-fast-#readme",
+  "devDependencies": {
+    "concurrently": "^7.1.0",
+    "nodemon": "^2.0.15"
+  }
+}
