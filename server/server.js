@@ -2,7 +2,8 @@ if (process.env.NODE_ENV !== 'production') require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const knex = require("knex")(require("./knexfile"));
+const knex = require("./db");
+// const knex = require("knex")(require("./knexfile"));
 
 app.use(cors());
 app.use(express.json());
