@@ -182,7 +182,7 @@ export default class Game extends Component {
             alert(`You guessed right ${user.userName}! You win! You had ${this.state.NUMBER_OF_GUESSES -1} guesses left!`);
 
             console.log(user.id);
-            axios.post("http://localhost:9001/endgame", {
+            axios.post("/endgame", {
                 attemptsLeft: this.state.NUMBER_OF_GUESSES -1,
                 word: this.state.correctGuess,
                 id: user.id
