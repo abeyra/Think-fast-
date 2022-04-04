@@ -50,7 +50,6 @@ app.post("/endgame", (req, res) => {
   let id = req.body.id;
   console.log(attemptsLeft, word, id);
 
-  knex
       knex("scores")
         .insert(
           {

@@ -1,4 +1,9 @@
 .game {
+    background-image: url('../../assets/images/words-image.jpeg');
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+    font-family: 'OpenSans';
 
     &__board {
         display: flex;
