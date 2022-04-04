@@ -3,7 +3,7 @@ import { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import Timer from '../../components/Timer/Timer';
 import Keyboard from '../../components/Keyboard/Keyboard';
-import { WORDS } from '../../Words/words';
+import { WORDS } from '../../Words/Words';
 import axios from 'axios';
 
 export default class Game extends Component {
