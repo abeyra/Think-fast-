@@ -1,7 +1,7 @@
 import './Game.scss';
 import { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import Timer from '../../components/Timer/Timer';
+import Timer from '../../components/timer/timer';
 import Keyboard from '../../components/Keyboard/Keyboard';
 import { WORDS } from "../../words/words";
 import axios from 'axios';
