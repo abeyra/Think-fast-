@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "tables:migrate": "knex migrate:latest"
   },
   "author": "",
   "license": "ISC",
