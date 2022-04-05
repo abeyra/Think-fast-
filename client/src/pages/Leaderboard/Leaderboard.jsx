@@ -9,7 +9,7 @@ export default class Leaderboard extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:9001/leaderboard")
+      .get("/leaderboard")
       .then((response) => {
         console.log(response.data);
         this.setState({
