@@ -14,36 +14,37 @@ const SERVER_PORT = process.env.PORT || 9000;
 app.post(`/signup`, (req, res) => {
   let userName = req.body.userName;
 
-  knex
-    .select("username")
-    .from("users")
-    .where("username", userName)
-    .then((result) => {
-      if (!result.length) {
-         knex("users")
-          .insert(
-            {
-              username: userName,
-            }
-          )
-          .then((response) => {
-            console.log(response);
-            console.log(userName);
-            res.status(201).send({
-              userName: userName,
-              id: response[0]
-            });
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        res.status(400).send("Username already exists! ");
-      }
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  console.log("signup working");
+  // knex
+  //   .select("username")
+  //   .from("users")
+  //   .where("username", userName)
+  //   .then((result) => {
+  //     if (!result.length) {
+  //        knex("users")
+  //         .insert(
+  //           {
+  //             username: userName,
+  //           }
+  //         )
+  //         .then((response) => {
+  //           console.log(response);
+  //           console.log(userName);
+  //           res.status(201).send({
+  //             userName: userName,
+  //             id: response[0]
+  //           });
+  //         })
+  //         .catch((error) => {
+  //           console.log(error);
+  //         });
+  //     } else {
+  //       res.status(400).send("Username already exists! ");
+  //     }
+  //   })
+  //   .catch((error) => {
+  //     console.log(error);
+  //   });
 });
 
 app.post(`/endgame`, (req, res) => {
