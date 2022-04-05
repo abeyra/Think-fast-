@@ -13,7 +13,7 @@ export default class Login extends Component {
     event.preventDefault();
 
     axios
-      .post(`${url}/signup`, {
+      .post(`/signup`, {
         userName: event.target.username.value,
       })
       .then((response) => {
@@ -29,7 +29,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.userName !== null) {
-      return <Redirect to="https://boiling-plains-79200.herokuapp.com/game" />;
+      return <Redirect to="/game" />;
     }
 
     return (

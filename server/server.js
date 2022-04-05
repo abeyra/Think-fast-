@@ -11,7 +11,7 @@ app.use(express.json());
 
 const SERVER_PORT = process.env.PORT || 9000;
 
-app.post(`${url}/signup`, (req, res) => {
+app.post(`/signup`, (req, res) => {
   let userName = req.body.userName;
 
   knex
@@ -46,7 +46,7 @@ app.post(`${url}/signup`, (req, res) => {
     });
 });
 
-app.post(`${url}/endgame`, (req, res) => {
+app.post(`/endgame`, (req, res) => {
   let attemptsLeft = req.body.attemptsLeft;
   let word = req.body.word;
   let id = req.body.id;
@@ -69,7 +69,7 @@ app.post(`${url}/endgame`, (req, res) => {
         });
 });
 
-app.get(`${url}/leaderboard`, (req, res) => {
+app.get(`/leaderboard`, (req, res) => {
   knex("users")
     .join("scores", "users.id", "=", "scores.userId")
     .select("users.username", "scores.attemptsLeft", "scores.correctWord")
