@@ -5,6 +5,7 @@ import Timer from '../../components/Timer/Timer';
 import Keyboard from '../../components/Keyboard/Keyboard';
 import { WORDS } from "../../Words/Words";
 import axios from 'axios';
+const url = "https://boiling-plains-79200.herokuapp.com";
 
 export default class Game extends Component {
     state = {
@@ -182,7 +183,7 @@ export default class Game extends Component {
             alert(`You guessed right ${user.userName}! You win! You had ${this.state.NUMBER_OF_GUESSES -1} guesses left!`);
 
             console.log(user.id);
-            axios.post("/endgame", {
+            axios.post(`${url}/endgame`, {
                 attemptsLeft: this.state.NUMBER_OF_GUESSES -1,
                 word: this.state.correctGuess,
                 id: user.id
@@ -273,7 +274,7 @@ export default class Game extends Component {
         let hoursMinsSecs = {hours:0, minutes: 10, seconds: 0} 
 
         if (this.state.NUMBER_OF_GUESSES === 0) {
-            return <Redirect to="/leaderboard" />;
+            return <Redirect to="https://boiling-plains-79200.herokuapp.com/leaderboard" />;
         }
 
         return (

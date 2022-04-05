@@ -2,6 +2,7 @@ import "./Login.scss";
 import { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+const url = "https://boiling-plains-79200.herokuapp.com";
 
 export default class Login extends Component {
   state = {
@@ -12,7 +13,7 @@ export default class Login extends Component {
     event.preventDefault();
 
     axios
-      .post("/signup", {
+      .post(`${url}/signup`, {
         userName: event.target.username.value,
       })
       .then((response) => {
@@ -28,7 +29,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.userName !== null) {
-      return <Redirect to="/game" />;
+      return <Redirect to="https://boiling-plains-79200.herokuapp.com/game" />;
     }
 
     return (

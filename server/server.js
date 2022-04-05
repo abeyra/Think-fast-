@@ -4,13 +4,14 @@ const app = express();
 const cors = require("cors");
 const knex = require("./db");
 // const knex = require("knex")(require("./knexfile"));
+const url = "https://boiling-plains-79200.herokuapp.com";
 
 app.use(cors());
 app.use(express.json());
 
 const SERVER_PORT = process.env.PORT || 9000;
 
-app.post("/signup", (req, res) => {
+app.post(`${url}/signup`, (req, res) => {
   let userName = req.body.userName;
 
   knex
@@ -45,7 +46,7 @@ app.post("/signup", (req, res) => {
     });
 });
 
-app.post("/endgame", (req, res) => {
+app.post(`${url}/endgame`, (req, res) => {
   let attemptsLeft = req.body.attemptsLeft;
   let word = req.body.word;
   let id = req.body.id;
@@ -68,7 +69,7 @@ app.post("/endgame", (req, res) => {
         });
 });
 
-app.get("/leaderboard", (req, res) => {
+app.get(`${url}/leaderboard`, (req, res) => {
   knex("users")
     .join("scores", "users.id", "=", "scores.userId")
     .select("users.username", "scores.attemptsLeft", "scores.correctWord")
