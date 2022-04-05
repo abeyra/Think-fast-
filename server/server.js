@@ -11,7 +11,7 @@ app.use(express.json());
 
 const SERVER_PORT = process.env.PORT || 9000;
 
-app.post(`/signup`, (req, res) => {
+app.post(`${__dirname}/signup`, (req, res) => {
   let userName = req.body.userName;
 
   knex
