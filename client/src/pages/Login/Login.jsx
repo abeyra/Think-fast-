@@ -13,7 +13,7 @@ export default class Login extends Component {
     event.preventDefault();
 
     axios
-      .post(`/signup`, {
+      .post(`${url}/signup`, {
         userName: event.target.username.value,
       })
       .then((response) => {

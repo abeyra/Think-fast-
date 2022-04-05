@@ -3,6 +3,6 @@ const configs = require('./knexfile')[env];
 const knex = require('knex');
 const connection = knex(configs);
 
-console.log(configs);
+// console.log(configs);
 
 module.exports = connection;
