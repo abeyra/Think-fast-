@@ -8,6 +8,8 @@ cognitive ability. "Think Fast" has an extra layer of difficulty added to it bec
 that starts when the game begins and if the user doesn't guess the word correctly before the timer expires they 
 will lose automatically. 
 
+Site can be accessed at http://www.think-fast.site/
+
 ## Features 
 
 - Cognitive training
