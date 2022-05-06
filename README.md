@@ -38,4 +38,4 @@ Site can be accessed at http://www.think-fast.site/
 - Add time remaining when user wins to leaderboards page
 
 ## Demo Video 
-- will be uploaded soon
+
