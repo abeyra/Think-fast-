@@ -7,7 +7,7 @@ module.exports = {
       host: "127.0.0.1",
       database: "think_fast",
       user: "root",
-      password: "Markhuntko1!",
+      password: process.env.Password,
     },
   },
 
